@@ -26,7 +26,7 @@ public class BaseShape extends Transform implements Cloneable {
      * @param coords The collection of 2D points
      */
     public BaseShape(Collection<Point2d> coords) {
-        this.coords = new ArrayList<>(coords);;
+        this.coords = new ArrayList<>(coords);
     }
 
     /** TODO
@@ -58,7 +58,8 @@ public class BaseShape extends Transform implements Cloneable {
      */
     public BaseShape addAll(Collection<Point2d> coords) {
         BaseShape newShape = this.clone();
-        newShape.coords.addAll(cloneCoords(coords));
+        //newShape.coords.addAll(cloneCoords(coords));
+        newShape.coords.addAll(coords);
         return newShape;
     }
 
@@ -151,9 +152,7 @@ public class BaseShape extends Transform implements Cloneable {
     /** TODO
      * @return Minimum X coordinate of the shape
      */
-    public Double getMinX() {
-        return coords.stream().mapToDouble(Point2d::X).min().orElse(Double.NaN);
-    }
+    public Double getMinX() { return coords.stream().mapToDouble(Point2d::X).min().orElse(Double.NaN); }
 
     /** TODO
      * @return Minimum Y coordinate of the shape
