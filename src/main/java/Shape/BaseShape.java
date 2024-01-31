@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class BaseShape extends Transform implements Cloneable {
     private final Collection<Point2d> coords;
 
-//helper function to clone a list of points 
+//helper function to clone a list of points
   public Collection<Point2d> cloneCoords(Collection<Point2d> coords) {
         return coords.stream().map(Point2d::clone).collect(Collectors.toList());
   }
@@ -129,71 +129,4 @@ public class BaseShape extends Transform implements Cloneable {
         return maxX;
     }
 
-    /** TODO
-     * @return Maximum Y coordinate of the shape
-     */
-    public Double getMaxY() {
-        double maxY = -Double.MAX_VALUE;
-
-        for (Point2d point : this.coords) {
-            double currentY = point.Y();
-            if (currentY > maxY) {
-                maxY = currentY;
-            }
-        }
-        return maxY;    }
-
-    /** TODO
-     * @return 2D Point containing the maximum X and Y coordinates of the shape
-     */
-    public Point2d getMaxCoord() {
-        Double maxX = getMaxX();
-        Double maxY = getMaxY();
-        return (!maxX.isNaN() && !maxY.isNaN()) ? new Point2d(maxX, maxY) : null;
-    }
-
-    /** TODO
-     * @return Minimum X coordinate of the shape
-     */
-    public Double getMinX() {
-        double minX = Double.MAX_VALUE;
-
-        for (Point2d point : this.coords) {
-            double currentX = point.X();
-            if (currentX < minX) {
-                minX = currentX;
-            }
-        }
-        return minX; }
-
-    /** TODO
-     * @return Minimum Y coordinate of the shape
-     */
-    public Double getMinY() {
-        double minY = Double.MAX_VALUE;
-
-        for (Point2d point : this.coords) {
-            double currentY = point.Y();
-            if (currentY < minY) {
-                minY = currentY;
-            }
-        }
-        return minY;
-    }
-
-    /** TODO
-     * @return 2D point containing the minimum X and Y coordinate of the shape
-     */
-    public Point2d getMinCoord() {
-        Double minX = getMinX();
-        Double minY = getMinY();
-        return (!minX.isNaN() && !minY.isNaN()) ? new Point2d(minX, minY) : null;
-    }
-
-    /** TODO
-     * @return Deep copy of the current shape
-     */
-    public BaseShape clone() {
-        return new BaseShape(this.cloneCoords());
-    }
 }

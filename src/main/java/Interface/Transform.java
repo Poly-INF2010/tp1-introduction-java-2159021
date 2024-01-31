@@ -16,6 +16,7 @@ public class Transform implements Rotate, Translate{
         coords.forEach(point -> {
             point.rotate(angle);
         });
+
         return coords;
     }
 
@@ -29,6 +30,8 @@ public class Transform implements Rotate, Translate{
         coords.forEach(point -> {
             point.translate(translateVector);
         });
+
         return coords;
     }
+
 }
