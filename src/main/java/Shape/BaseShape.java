@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class BaseShape extends Transform implements Cloneable {
     private final Collection<Point2d> coords;
 
-//helper function to clone a list of points 
+//helper function to clone a list of points
   public Collection<Point2d> cloneCoords(Collection<Point2d> coords) {
         return coords.stream().map(Point2d::clone).collect(Collectors.toList());
   }
@@ -135,7 +135,13 @@ public class BaseShape extends Transform implements Cloneable {
      * @return Maximum Y coordinate of the shape
      */
     public Double getMaxY() {
-        return coords.stream().mapToDouble(Point2d::Y).max().orElse(Double.NaN);
+        double pointY=-Double.MAX_VALUE;
+        for (Point2d i: this.coords) {
+            if(i.Y() >pointY){
+                pointY = i.Y();
+            }
+        }
+        return pointY;
     }
 
     /** TODO
