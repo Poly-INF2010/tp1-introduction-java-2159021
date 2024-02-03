@@ -2,6 +2,7 @@ package Shape;
 
 import Point.Point2d;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Rectangle extends BaseShape {
@@ -11,7 +12,14 @@ public class Rectangle extends BaseShape {
      * @param height Height of the rectangle
      */
     public Rectangle(Double width, Double height) {
+        Collection<Point2d> coords = new ArrayList<>();
 
+        for (double x = 0; x < width; x += 0.5) {
+            for (double y = 0; y < height; y += 0.5) {
+                coords.add(new Point2d(x, y));
+            }
+        }
+        this.addAll(coords);
     }
 
     /** TODO
@@ -19,7 +27,14 @@ public class Rectangle extends BaseShape {
      * @param dimensions 2D point containing the width and height of the rectangle
      */
     public Rectangle(Point2d dimensions) {
+        Collection<Point2d> coords = new ArrayList<>();
 
+        for (double x = 0; x < dimensions.X(); x += 0.5) {
+            for (double y = 0; y < dimensions.Y(); y += 0.5) {
+                coords.add(new Point2d(x, y));
+            }
+        }
+        this.addAll(coords);
     }
 
     /**
@@ -27,7 +42,7 @@ public class Rectangle extends BaseShape {
      * @param coords The collection of 2D points
      */
     private Rectangle(Collection<Point2d> coords) {
-
+        this.addAll(coords);
     }
 
     /** TODO
@@ -35,6 +50,6 @@ public class Rectangle extends BaseShape {
      */
     @Override
     public Rectangle clone() {
-        return null;
+        return new Rectangle(this.cloneCoords());
     }
 }
