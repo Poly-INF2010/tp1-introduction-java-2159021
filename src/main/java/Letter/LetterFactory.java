@@ -27,7 +27,23 @@ public final class LetterFactory {
      * @return BaseShape containing the letter B
      */
     public static BaseShape create_B() {
-        return null;
+        double zero = 0;
+        Rectangle barre = new Rectangle(maxWidth, maxHeight);
+        Rectangle right = new Rectangle(maxWidth-stripeThickness, maxHeight);
+        right.replaceAll(right.translate(right.getCoords(), new Point2d(stripeThickness, zero)));
+        barre.remove(right);
+
+        Circle cExt1 = new Circle(halfMaxHeight);
+        Circle cInt1 = new Circle(halfMaxHeight-stripeThickness);
+        cExt1.remove(cInt1);
+        BaseShape cExt2 = new BaseShape(cExt1.cloneCoords());
+        cExt2.replaceAll(cExt2.translate(cExt2.getCoords(), new Point2d(zero, halfMaxHeight/2)));
+        cExt1.replaceAll(cExt1.translate(cExt2.getCoords(), new Point2d(zero, -halfMaxHeight/2)));
+
+        BaseShape B = new BaseShape(barre.cloneCoords());
+        B.add(cExt1);
+        B.add(cExt2);
+        return B;
     }
 
     /** TODO
@@ -35,10 +51,14 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        Ellipse c = new Ellipse(maxWidth, maxHeight);
-        Collection<Point2d> coords = c.cloneCoords();
-        coords.removeIf(point2d -> point2d.X()>maxWidth-15);
-        return new BaseShape(coords);
+        Ellipse cExt = new Ellipse(maxWidth, maxHeight);
+        Ellipse cInt = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
+        cExt.remove(cInt);
+        Collection<Point2d> coords = cExt.cloneCoords();
+        coords.removeIf(point2d -> point2d.X()>maxWidth-10);
+
+        BaseShape C = new BaseShape(coords);
+        return C;
     }
 
     /** TODO
@@ -70,7 +90,12 @@ public final class LetterFactory {
      * @return BaseShape containing the letter O
      */
     public static BaseShape create_O() {
-        return new BaseShape(new Ellipse(maxWidth, maxHeight).cloneCoords());
+        Ellipse oExt = new Ellipse(maxWidth, maxHeight);
+        Ellipse oInt = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
+        oExt.remove(oInt);
+
+        BaseShape O = new BaseShape(oExt.cloneCoords());
+        return O;
     }
 
 }
