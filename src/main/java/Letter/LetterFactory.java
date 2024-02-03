@@ -3,6 +3,8 @@ package Letter;
 import Point.Point2d;
 import Shape.*;
 
+import java.util.Collection;
+
 public final class LetterFactory {
     final static Double maxHeight = 150.0;
     final static Double maxWidth = maxHeight / 2.5;
@@ -33,7 +35,10 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        return null;
+        Ellipse c = new Ellipse(maxWidth, maxHeight);
+        Collection<Point2d> coords = c.cloneCoords();
+        coords.removeIf(point2d -> point2d.X()>maxWidth-15);
+        return new BaseShape(coords);
     }
 
     /** TODO
@@ -65,7 +70,7 @@ public final class LetterFactory {
      * @return BaseShape containing the letter O
      */
     public static BaseShape create_O() {
-        return null;
+        return new BaseShape(new Ellipse(maxWidth, maxHeight).cloneCoords());
     }
 
 }
