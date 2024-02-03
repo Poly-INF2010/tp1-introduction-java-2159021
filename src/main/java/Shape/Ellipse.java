@@ -11,7 +11,22 @@ public class Ellipse extends BaseShape {
      * @param heightDiameter Height of the Ellipse
      */
     public Ellipse(Double widthDiameter, Double heightDiameter) {
+        Collection<Point2d> coords = null;
 
+        double centerX = widthDiameter / 2.0;
+        double centerY = heightDiameter / 2.0;
+
+        for (double x = 0; x < widthDiameter; x+=0.5) {
+            for (double y = 0; y < heightDiameter; y+=0.5) {
+                double normalizedX = (x - centerX) / (widthDiameter / 2.0);
+                double normalizedY = (y - centerY) / (heightDiameter / 2.0);
+
+                if ((normalizedX * normalizedX + normalizedY * normalizedY) <= 1.0) {
+                    coords.add(new Point2d(x, y));
+                }
+            }
+        }
+        this.addAll(coords);
     }
 
     /** TODO

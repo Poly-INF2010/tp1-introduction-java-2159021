@@ -129,4 +129,54 @@ public class BaseShape extends Transform implements Cloneable {
         return maxX;
     }
 
+    public Double getMinX() {
+        double minX = Double.MAX_VALUE;
+
+        for (Point2d point : this.coords) {
+            double currentX = point.X();
+            if (currentX < minX) {
+                minX = currentX;
+            }
+        }
+        return minX;
+    }
+
+    public Double getMaxY() {
+        double maxY = -Double.MAX_VALUE;
+
+        for (Point2d point : this.coords) {
+            double currentY = point.Y();
+            if (currentY > maxY) {
+                maxY = currentY;
+            }
+        }
+        return maxY;
+    }
+
+    public Double getMinY() {
+        double minY = Double.MAX_VALUE;
+
+        for (Point2d point : this.coords) {
+            double currentY = point.Y();
+            if (currentY < minY) {
+                minY = currentY;
+            }
+        }
+        return minY;
+    }
+
+    public Point2d getMaxCoord() {
+        Double maxX = getMaxX();
+        Double maxY = getMaxY();
+        return (!maxX.isNaN() && !maxY.isNaN()) ? new Point2d(maxX, maxY) : null;
+    }
+
+    public Point2d getMinCoord() {
+        Double minX = getMinX();
+        Double minY = getMinY();
+        return (!minX.isNaN() && !minY.isNaN()) ? new Point2d(minX, minY) : null;
+    }
+    public BaseShape clone() {
+        return new BaseShape(this.cloneCoords());
+    }
 }
