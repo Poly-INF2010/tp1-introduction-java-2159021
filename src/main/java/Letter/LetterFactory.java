@@ -42,14 +42,17 @@ public final class LetterFactory {
      */
     public static BaseShape create_B() {
         double zero = 0;
+        double offset = -20;
 
-        Circle cExt1 = new Circle(halfMaxHeight);
-        Circle cInt1 = new Circle(halfMaxHeight-stripeThickness);
-        cExt1.remove(cInt1);
+        Circle cExt1 = new Circle(halfMaxHeight+5);
+        Circle cInt = new Circle(halfMaxHeight-stripeThickness);
+        cInt.replaceAll(cInt.translate(cInt.cloneCoords(), new Point2d(halfStripeThickness, halfStripeThickness)));
+        cExt1.remove(cInt);
 
         BaseShape cExt2 = new BaseShape(cExt1.cloneCoords());
-        cExt2.replaceAll(cExt2.translate(cExt2.cloneCoords(), new Point2d(zero, -halfMaxHeight)));
+        cExt2.replaceAll(cExt2.translate(cExt2.cloneCoords(), new Point2d(offset, -halfMaxHeight)));
         cExt1.replaceAll(cExt1.translate(cExt2.cloneCoords(), new Point2d(zero, halfMaxHeight)));
+
 
         Rectangle barre = new Rectangle(stripeThickness, maxHeight);
         BaseShape B = new BaseShape(barre.translate(barre.cloneCoords(), new Point2d(-halfMaxWidth+stripeThickness, zero)));
@@ -65,10 +68,11 @@ public final class LetterFactory {
     public static BaseShape create_C() {
         double zero =0;
         Ellipse cExt = new Ellipse(maxWidth, maxHeight);
-        Ellipse cInt = new Ellipse(halfMaxWidth, halfMaxHeight);
+        Ellipse cInt = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
+        cInt.replaceAll(cInt.translate(cInt.cloneCoords(), new Point2d(halfStripeThickness, halfStripeThickness)));
         cExt.remove(cInt);
-        Rectangle gap = new Rectangle(stripeThickness, halfMaxWidth);
-        //gap.replaceAll(gap.translate(gap.cloneCoords(), new Point2d(halfMaxWidth/2,zero)));
+        Rectangle gap = new Rectangle(stripeThickness+20, halfMaxHeight);
+        gap.replaceAll(gap.translate(gap.cloneCoords(), new Point2d(halfMaxWidth+20,halfMaxHeight)));
         cExt.remove(gap);
 
         BaseShape C = new BaseShape(cExt.cloneCoords());
@@ -83,7 +87,7 @@ public final class LetterFactory {
         double zero = 0;
         Rectangle left = new Rectangle(maxWidth, maxHeight);
         Rectangle right = new Rectangle(maxWidth-stripeThickness, maxHeight);
-        right.replaceAll(right.translate(right.getCoords(), new Point2d(stripeThickness, zero)));
+        right.replaceAll(right.translate(right.getCoords(), new Point2d(stripeThickness-7, zero)));
         left.remove(right);
 
         Rectangle barre1 = new Rectangle(maxWidth, stripeThickness);
@@ -127,7 +131,7 @@ public final class LetterFactory {
         Rectangle left = new Rectangle(stripeThickness, maxHeight);
         left.replaceAll(left.translate(left.cloneCoords(), new Point2d(-maxWidth+halfStripeThickness, zero)));
 
-        Rectangle middle = new Rectangle(stripeThickness, maxHeight+5);
+        Rectangle middle = new Rectangle(stripeThickness, maxHeight+15);
         double angleLeft = Math.toRadians(145);
         middle.replaceAll(middle.rotate(middle.cloneCoords(), angleLeft));
 
@@ -144,10 +148,11 @@ public final class LetterFactory {
     public static BaseShape create_O() {
         Ellipse oExt = new Ellipse(maxWidth, maxHeight);
         Ellipse oInt = new Ellipse(maxWidth-stripeThickness, maxHeight-stripeThickness);
-        //oExt.remove(oInt);
+        oInt.replaceAll(oInt.translate(oInt.cloneCoords(), new Point2d(halfStripeThickness, halfStripeThickness)));
+        oExt.remove(oInt);
 
-        //BaseShape O = new BaseShape(oExt.cloneCoords());
-        return oExt;
+        BaseShape O = new BaseShape(oExt.cloneCoords());
+        return O;
     }
 
 }
