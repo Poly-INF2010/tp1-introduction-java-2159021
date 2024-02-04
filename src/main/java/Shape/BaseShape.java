@@ -73,7 +73,7 @@ public class BaseShape extends Transform implements Cloneable {
      * @return Updated BaseShape
      */
     public BaseShape remove(BaseShape shape) {
-        this.coords.removeAll(shape.cloneCoords());
+        this.removeAll(shape.getCoords());
         return this;
     }
 

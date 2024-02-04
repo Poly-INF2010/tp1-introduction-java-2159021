@@ -14,8 +14,8 @@ public class Rectangle extends BaseShape {
     public Rectangle(Double width, Double height) {
         Collection<Point2d> coords = new ArrayList<>();
 
-        for (double x = 0; x < width; x += 0.5) {
-            for (double y = 0; y < height; y += 0.5) {
+        for (double x = -width/2; x < width/2; x += 0.5) {
+            for (double y = -height/2; y < height/2; y += 0.5) {
                 coords.add(new Point2d(x, y));
             }
         }

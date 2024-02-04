@@ -38,11 +38,11 @@ public class Ellipse extends BaseShape {
         Collection<Point2d> coords = new ArrayList<>();
         double widthDiameter = dimensions.X();
         double heightDiameter = dimensions.Y();
-        double centerX = dimensions.X() / 2.0;
-        double centerY = dimensions.Y() / 2.0;
+        double centerX = 0;
+        double centerY = 0;
 
-        for (double x = 0; x < widthDiameter; x += 0.5) {
-            for (double y = 0; y < heightDiameter; y += 0.5) {
+        for (double x = -widthDiameter/2; x < widthDiameter/2; x += 0.5) {
+            for (double y = -heightDiameter/2; y < heightDiameter/2; y += 0.5) {
                 double normalizedX = (x - centerX) / (widthDiameter / 2.0);
                 double normalizedY = (y - centerY) / (heightDiameter / 2.0);
 

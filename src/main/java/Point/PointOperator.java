@@ -36,6 +36,8 @@ public final class PointOperator {
     }
 
 
+
+
     /** TODO
      * Divide a vector of size N by a scalar
      * @param vector Vector to divide
